@@ -1,0 +1,81 @@
+<div class="row-fluid">
+
+  <h1 class="page-header" id="transactions">
+    Transactions
+  </h1>
+
+  <div class="jumbotron">
+    <div class="body">
+
+      <div class="row-fluid">
+        
+        <div class="span2">
+          <a href="#/transactions/telephonepayments">
+            <button type="button" class="btn btn-large btn-block">
+              <i class='icon-credit-card icon-large' id="plus"></i> Phone Bill
+            </button>
+          </a>
+        </div>
+
+        <div class="span2">
+          <a href="#/transactions/activation"> 
+            <button type="button" class="btn btn-large btn-block">
+              <i class='icon-plus icon-large' id="plus"></i> Activation
+            </button>
+          </a>    
+        </div>
+
+        <div class="span2">
+         <a href="#/transactions/phonesales">    
+            <button type="button" class="btn btn-large btn-block">
+              <i class='icon-mobile-phone icon-large' id="plus"></i> Phone Sales
+            </button>
+          </a>   
+        </div> 
+
+        <div class="span2">
+          <a href="#/transactions/utilities">   
+            <button  type="button" class="btn btn-large btn-block">
+              <i class='icon-wrench icon-large' id="plus"></i> Utilities
+            </button>
+         </a>  
+        </div>
+
+        <div class="span2">
+          <a href="#/transactions/international">     
+            <button type="button" class="btn btn-large btn-block">
+              <i class='icon-plane icon-large' id="plus"></i> International
+            </button>
+         </a>    
+        </div>
+
+        <div class="span2">
+         <a href="#/transactions/other">    
+            <button  type="button" class="btn btn-large btn-block">
+              <i class='icon-question icon-large' id="plus"></i> Other
+            </button>
+          </a>
+        </div>
+
+      </div>
+      <br/>
+      <br/>
+      <br/>
+
+      <div ng-form name="trans">
+        <div ui-view></div>
+        <div>
+          <button ng-click='submit_transaction($sco)' ng-disabled="trans.$invalid" type="button" class="btn btn-medium btn-primary">
+            <i class='icon-ok icon-medium' id="plus"></i> Submit Transaction
+          </button>
+        </div>
+      </div>
+
+      </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+

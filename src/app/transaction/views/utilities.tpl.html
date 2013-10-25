@@ -1,0 +1,35 @@
+<h3>Utilities - Precash</h3>
+<form novalidate class="simple-form" name="newtransaction">
+
+  
+  <div class="controls">      
+
+    <div class="fluid.row">
+      <h5>Amount:</h5>
+      <div ng-form name="amount" class="input-prepend" class="input-append">
+        <span class="add-on">$</span>
+        <input ng-model="transaction.amount" ui-keypress="{13:'keypressCallback($event)'}" class="span5" id="appendedPrependedInput" placeholder="100.00" type='number' required min="1.00" step="1" decimal-places></input>
+      </div>
+
+      <div>
+        Total Due: {{transaction.amount | currency}}
+      </div>
+      
+        <div>
+        <br>
+        <label ng-form ng-init="transaction.credit='cash'" class="checkbox inline">
+          <input type="radio" value="cash" ng-disabled="amount.$invalid" ng-model="transaction.credit"><small> Cash </small>
+          <input type="radio" value="credit" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Credit Card </small>
+          <input type="radio" value="check" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Check </small>
+        </label> 
+        </div>
+
+
+  </div>
+
+      </div>
+      <br>
+
+</form>
+
+

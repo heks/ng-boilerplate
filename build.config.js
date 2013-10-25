@@ -49,11 +49,31 @@ module.exports = {
    */
   vendor_files: {
     js: [
+      'vendor/jquery/jquery.js',
       'vendor/angular/angular.js',
+      'vendor/jquery-ui/jquery-ui.min.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
-      'vendor/angular-ui-utils/modules/route/route.js'
+      'vendor/angular-ui-utils/modules/event/event.js',
+      'vendor/angular-ui-utils/modules/format/format.js',
+      'vendor/angular-ui-utils/modules/highlight/highlight.js',
+      'vendor/angular-ui-utils/modules/ie-shiv/ie-shiv.js',
+      'vendor/angular-ui-utils/modules/indeterminate/indeterminate.js',
+      'vendor/angular-ui-utils/modules/inflector/inflector.js',
+      'vendor/angular-ui-utils/modules/jq/jq.js',
+      'vendor/angular-ui-utils/modules/keypress/keypress.js',
+      'vendor/angular-ui-utils/modules/mask/mask.js',
+      'vendor/angular-ui-utils/modules/reset/reset.js',
+      'vendor/angular-ui-utils/modules/route/route.js',
+      'vendor/angular-ui-utils/modules/scrollfix/scrollfix.js',
+      'vendor/angular-ui-utils/modules/showhide/showhide.js',
+      'vendor/angular-ui-utils/modules/unique/unique.js',
+      'vendor/angular-ui-utils/modules/validate/validate.js',
+      'vendor/angular-ui-utils/modules/utils.js',
+      'vendor/angular-grid/build/ng-grid.js',
+      'vendor/angular-resource/angular-resource.js',
+      'vendor/angular-animate/angular-animate.min.js'
     ],
     css: [
     ]

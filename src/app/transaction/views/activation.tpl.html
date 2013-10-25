@@ -1,0 +1,66 @@
+ <div ng-show='response' ng-animate="{show: 'fade'}">
+  <div class="row" id="center">
+    <alert class="span6 offset3" type="alerttype" close="closeAlert()">{{response}}{{transaction.telephone | tel}}</alert>
+  </div>
+</div>
+
+<h3>Activation</h3>
+
+<div ng-form novalidate class="simple-form" name="newtransaction">
+    <div ng-form name="telephonesearch">
+      <h5>New or Existing Client?</h5>
+          <span class="btn-group">
+        <div class="input-append">
+          <input ui-keypress="{13:'keypressCallback($event)'}" ng-model="transaction.telephone" ui-mask="{{'(999) 999-9999'}}" placeholder="(012) 345-6789" class="span5" id="appendedInputButtons" type="text" ng-maxlength="10" ng-minlength="10" id="telephonesearch" name="telephonesearch" required>
+          <button ng-disabled="telephonesearch.$invalid" class="btn" type="button" ng-click="submit(transaction.telephone)">Add/Edit Client</button>
+        </div>
+        </span>
+    </div>
+
+      <!--
+      <div class="input-append">
+        <input ui-keypress="{13:'keypressCallback($event)'}" ng-model="search" ui-mask="{{'(999) 999-9999'}}" placeholder="(012) 345-6789" class="span5" id="appendedInputButtons" type="text" ng-maxlength="10" ng-minlength="10" id="telephonesearcg" name="telephonesearch">
+        <button class="btn" type="button">Edit Client</button>
+      </div>
+      -->
+
+
+  <div class="controls">
+
+      
+      <h5>Carrier:</h5>
+      <select ui-keypress="{13:'keypressCallback($event)'}" ng-model="transaction.carrier" name="model" ng-options="carrier for carrier in carriers" required></select><br /> 
+      
+      <h5>Amount:</h5>
+
+          <div ng-form name="amount" class="input-prepend" class="input-append">
+            <span class="add-on">$</span>
+            <input ng-model="transaction.amount" type='number' ui-keypress="{13:'keypressCallback($event)'}" class="span5" id="appendedPrependedInput" placeholder="100.00" required min="1.00" step="1" decimal-places></input>
+          </div>
+
+          <div>
+            Total Due: {{transaction.amount | currency}}
+          </div>
+          
+        <div>
+        <br>
+        <label ng-form ng-init="transaction.credit='cash'" class="checkbox inline">
+          <input type="radio" value="cash" ng-disabled="amount.$invalid" ng-model="transaction.credit"><small> Cash </small>
+          <input type="radio" value="credit" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Credit Card </small>
+          <input type="radio" value="check" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Check </small>
+        </label> 
+        </div>
+
+
+
+        <br>
+        <br>
+  <!--
+        <div class='fluid.row'>
+            <button ng-disabled="newtransaction.$invalid" type="button" class="btn btn-large btn-primary">
+              <i class='icon-ok icon-large' id="plus"></i> Submit Transaction
+            </button>
+        </div>
+  -->
+      </div>
+</div>

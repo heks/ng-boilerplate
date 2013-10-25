@@ -1,0 +1,55 @@
+  <h1 class="page-header" id="transactions">
+    Daily Transactions
+  </h1>
+<div class="jumbotron">
+	<div class="body">
+		<table class="table table-condensed">
+		    <thead>
+		    	<tr>
+					<th id="center"><h5>Total Transactions</h5></th>
+					<th id="center"><h5>Total Amount</h5> </th>
+					<th id="center"><h5>Cash Total</h5></th>
+					<th id="center"><h5>Credit Card Total</h5></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="center"><h6> {{total_transactions}} </h6></td>
+					<td id="center"><h6> {{total | currency}}</h6> </td>
+					<td id="center"><h6> {{cash_total | currency}}</h6> </td>
+					<td id="center"><h6> {{credit_total | currency}}</h6> </td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<br>
+		<table class="table table-striped table-condensed" id="center">
+			<thead>
+				<tr>
+					<th> </th>
+					<th> Time </th>
+					<th> Type </th>
+					<th> Amount </th>
+					<th> Credit </th>
+					<th id="center"> Other Information </th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="transaction in todays_transactions | reverse">
+				<td> {{$index + 1}} </td>
+					<td> {{transaction.date | date:'h:mm a' }} </td>
+					<td> {{transaction.Type }} </td>
+					<td> {{transaction.amount | currency }} </td>
+					<td> {{transaction.credit }} </td>
+					<td id="center"> {{transaction.telephone | tel }} {{transaction.carrer }} {{transaction.model }} {{transaction.service}} {{transaction.Description}} </td>
+					<td>
+						<a ng-click='deleteTransaction(transaction)'>
+							<i class='icon-trash icon-large pull-right' id='trashicon'></i>
+						</a> 
+					</td>
+				</tr>
+			</tbody>
+		</table>
+  	</div>
+</div>

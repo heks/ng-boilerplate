@@ -1,0 +1,203 @@
+
+<div class="container" width="800px" id="invoice" >
+    <!--<tr>-->
+    <div class="inline">
+      <!--<td colspan="2">-->
+        <h5 style="float:left;margin-top:30px" ng-click="new_invoice_num()" >#{{ invoice.invoice_number }}</h5>
+      <!-- </td>-->
+      <!--<td colspan="2" style="text-align:center;">-->
+        <h3 style="float:left;margin-left:20%;">Telekom Communications Inc.</h3>
+      <!-- </td> -->
+      <!--<td colspan="2" style="text-align:right;">-->
+        <h5 style="float:left;margin-left:20%;margin-top:30px">{{ invoice.invoice_number | date:"yyyy-MM-dd" }}</h5>
+      <!--</td>-->
+    <!--</tr>-->
+    </div>
+  <table class="table">
+    <tr>
+      <td>
+
+		<form class="form-horizontal" role="form">
+		  <div class="form-inline">
+		    	<div class='noprint'>
+		      		<input type="text" ng-model="invoice.firstname" style="width:70px" id="firstname" placeholder="Daniel">
+		      	</div>
+		      	<div class='noscreen'> {{invoice.firstname}} </div>
+		      	<div class='noprint'>
+		      		<input type="text" ng-model="invoice.lastname" style="width:70px" id="lastname" placeholder="Rasinski">
+		      	</div>
+		      	<div class='noscreen'> {{invoice.lastname}} </div>
+		  </div>
+
+		  <div class="form-group">
+		    <div class="col-lg-10">
+		      	<div class='noprint'>
+		     		<input ng-model="invoice.telephone" style="margin-top:4px;width:93px" ui-mask="{{'(999) 999-9999'}}" placeholder="(012) 345-6789" id="appendedInputButtons" type="text" ng-maxlength="10" ng-minlength="10" id="telephonesearch" name="telephonesearch">
+		     	</div>
+				<div class='noscreen'> {{invoice.telephone | tel}} </div> 	
+		 	 </div>
+		  </div>
+		</form>
+
+      </td>
+      <td>
+        <div style="text-align:right;">
+          <strong>(773) 774-7000</strong>
+          <div>www.telekomchicago.com<br>
+          	<address>
+          		3105 N. Milwaukee Ave.<br>
+          		Chicago, IL<br>
+          		60618-6629
+        	</address>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <p>{{processed}}</p>
+  <table class="table" style="vertical-align:center">
+      <tr>
+          <th></th>
+          <th>Type</th>
+          <th>Information</th>
+          <th>Cost</th>
+          <th>Tax?</th>
+          <th style="text-align:right;">Total</th>
+          
+      </tr>
+      <tr ng:repeat="transaction in invoice.transactions track by $index">
+          <td>
+          	<div class='noprint'>
+				<a ng-click='removetransaction(transaction)'>
+					<i class='icon-trash icon-large pull-right' id='trashicon'></i>
+				</a> 
+			</div>
+ 		  </td>
+          <td>{{transaction.Type}}</td>
+
+		  <td>
+      	  <select ng-show="transaction.Choices" class="span2 noprint" ng-model="transaction.Description" ng-options="s for s in transaction.Choices
+      	  "></select>
+      	  <span class="noscreen">{{transaction.Description}}</span>
+      	  	<div class='noprint'>
+		  		<input ng-hide="transaction.Choices" class="ng-hide span2" type="text" ng-hide="expression" id="Description" ng-model="transaction.Description" placeholder="Description">
+		  	</div>
+		  </td>
+
+		  <td>
+            <div name="amount" class="input-prepend noprint" class="input-append">
+        		<span class="add-on">$</span>
+          		<input style="width:70px;" ng-model="transaction.amount" type='number' class="span2" id="appendedPrependedInput" placeholder="100.00" required min="1.00" step="1" decimal-places></input>
+          	</div>
+            <span class="noscreen">{{transaction.amount | currency}}</span>
+      </td>
+
+		  <td>
+		  	<div class='noprint'>
+		        <label class="checkbox inline">
+		        	<input type="checkbox" id="inlineCheckbox1" value="option1" ng-model="transaction.tax" ng-click='toggleTax(transaction)'>
+		      	</label>
+			</div>
+			<div class="noscreen">
+				<div ng-show='transaction.tax'> <i class="icon-ok icon-large"></i> </div>
+			</div>
+		  </td>
+          <td style="text-align:right;">{{transaction.amount+transaction.taxcost | currency}}</td>
+      </tr>
+
+      <tr>
+		<td colspan='6'>
+			<div class='noprint'>
+	          <button type="button"  class="btn btn-medium buttonlist" ng:click="addPhoneBill()">
+	          <i class='icon-credit-card icon-medium' id="plus"></i> Phone Bill
+	          </button>
+	          <button type="button" class="btn btn-medium buttonlist" ng:click="addActivation()">
+	          <i class='icon-plus icon-medium' id="plus"></i> Activation
+	          </button>
+
+	          <button type="button" class="btn btn-medium buttonlist" ng:click="addPhoneSale()">
+	          <i class='icon-mobile-phone icon-medium' id="plus"></i> Phone Sales
+	          </button>
+	          <button  type="button" class="btn btn-medium buttonlist" ng:click="addUtil()">
+	          <i class='icon-wrench icon-medium' id="plus"></i> Utilities
+	          </button>
+	          <button type="button" class="btn btn-medium buttonlist" ng:click="addInternational()">
+	          <i class='icon-plane icon-medium' id="plus"></i> International
+	          </button>
+	          <button  type="button" class="btn btn-medium buttonlist" ng:click="addOther()">
+	          <i class='icon-question icon-medium' id="plus"></i> Other
+          	  </button>
+          	 </div>
+          </td>
+          <!--
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >Phone Bill</a></td>
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >Activation</a></td>
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >Phone Sale</a></td>
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >Utilities</a></td>
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >International</a></td>
+          <td colspan="5"><a class="btn btn-primary" href ng:click="addtransaction()" >Other</a></td>
+          -->
+      </tr>
+      <tr>
+          <td style="text-align:right;" colspan="5">
+            <strong>Sub Total:</strong>
+          </td>
+          <td style="text-align:right;"Z>
+            {{invoice_sub_total() | currency}}
+          </td>
+      </tr>
+      <tr>
+          <td style="text-align:right;" colspan="5">
+            <strong>Tax Total (9.25%):</strong>
+          </td>
+          <td style="text-align:right;" colspan="5">
+            {{calculate_tax() | currency}}
+          </td>
+      </tr>
+      <tr>
+            <td colspan='4' style="text-align:right;">
+              <div class="noprint">
+                <label class="checkbox inline">
+                  <input type="radio" value="Cash" ng-model="invoice.typeofpayment"><small> Cash </small>
+                  <input type="radio" value="Credit" ng-model="invoice.typeofpayment"> <small> Credit Card </small>
+                  <input type="radio" value="Check" ng-model="invoice.typeofpayment"> <small> Check </small>
+                </label>
+              </div>
+            </td>
+          </div> 
+          <td style="text-align:right;" c
+          colspan="1">
+            <div class="noscreen">({{invoice.typeofpayment}})</div>
+            <strong style="text-align:right;">Grand Total:</strong>
+          </td>
+          <td style="text-align:right;">
+            {{calculate_grand_total() | currency}}
+          </td>
+      </tr>
+
+  </table>
+
+
+  <div class="noprint">
+    <div>
+      <button style="float:left;margin-left:31%;" ng-click='submitInfo()' type="button" class="btn btn-medium btn-primary">
+        <i class='icon-ok icon-medium' id="plus"></i> Submit Transaction
+      </button>
+    </div>
+    <div>
+      <button style="float:left;margin-left:15px;" ng-click='clearInfo()' type="button" class="btn btn-medium">
+        <i class='icon-eraser icon-medium' id="plus"></i> Clear
+      </button>
+    </div>
+    <div>
+      <button style="float:left;margin-left:15px;" ng-click='printInfo()' type="button" class="btn btn-medium">
+        <i class='icon-print icon-medium' id="plus"></i> Print
+      </button>
+    </div>
+  </div>
+
+
+</div>
+
+{{invoice | json}}
+<br>
+

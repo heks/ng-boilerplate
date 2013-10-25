@@ -22,8 +22,8 @@ angular.module( 'ngBoilerplate.about', [
   
   // This is simple a demo for UI Boostrap.
   $scope.dropdownDemoItems = [
-    "The first choice!",
-    "And another choice for you.",
+    "HELLO WORLD",
+    "And another daniel choice for you.",
     "but wait! A third!"
   ];
 })

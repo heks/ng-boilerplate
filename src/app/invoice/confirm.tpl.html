@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <h3 id='center'>Please Confirm Transaction</h3>
+</div>
+
+<div ng-show="error" class="modal-body ">
+    <div class="alert alert-error">
+      Error: {{error.data}}
+    </div>
+</div>
+
+<div class="modal-footer">
+  <button ng-click="cancel()" class="btn btn-danger span2" id='cancel-modal'>Cancel</button>
+  <button ng-click="submit()" class="btn btn-success span2" id='confirm-modal'>Confirm </button>
+</div>

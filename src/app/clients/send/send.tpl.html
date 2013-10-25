@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h3>Send SMS</h3>
+</div>
+
+
+
+<div class="modal-body" ui-keypress="{13:'keypressCallback($event)'}">
+
+
+    <form no idate class="simple-form" name="sendmessage">
+        <h4> Your Message: </h4>
+        <textarea class="field span6" rows="6" ng-model='message' required capitalize-first> {{message}} </textarea>
+    </form>
+
+    <div class="btn-group">
+      <button class="btn" ng-click="togglePolish()" >Polski</button>
+      <button class="btn" ng-click="toggleEnglish()">English</button>
+      <button class="btn" ng-click="toggleSpanish()">Spanish</button>
+    </div>
+
+</div>
+
+<div class="modal-footer">
+  <button ng-click="submit()" class="btn btn-primary" ng-disabled="sendmessage.$invalid">Send</button>
+  <button ng-click="cancel()" class="btn btn-primary" >Cancel</button>
+</div>

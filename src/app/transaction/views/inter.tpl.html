@@ -1,0 +1,54 @@
+<h3>International Calling</h3>
+<form novalidate class="simple-form" name="newtransaction">
+
+  
+  <div class="controls">
+
+      <h5>Service:</h5>
+      <select ui-keypress="{13:'keypressCallback($event)'}" ng-model="transaction.service" name="model" ng-options="icarrier for icarrier in icarriers" required></select><br /> 
+
+      <!--
+      <h5>Card:</h5>
+      <select ui-keypress="{13:'keypressCallback($event)'}" ng-model="transaction.model" name="model" ng-options="carrier for carrier in carriers" required></select><br /> 
+      -->
+      <h5>Amount:</h5>
+      <div ng-form name="amount" class="input-prepend" class="input-append">
+        <span class="add-on">$</span>
+        <input ng-model="transaction.amount" type='number' ui-keypress="{13:'keypressCallback($event)'}" class="span5" id="appendedPrependedInput" placeholder="100.00" name="amount" required formatPrice min="1.00" step="1" decimal-places></input>
+      </div>
+
+      <label class="checkbox inline">
+          <input type="checkbox" ng-disabled="amount.$invalid" id="inlineCheckbox1" value="option1" ng-model="tax" ng-click='toggleTax(tax)' ><small> +Tax?</small>
+      </label>
+
+      <div>
+        Total Due: {{transaction.amount | currency}}
+      </div>
+      
+        <div>
+        <br>
+        <label ng-form ng-init="transaction.credit='cash'" class="checkbox inline">
+          <input type="radio" value="cash" ng-disabled="amount.$invalid" ng-model="transaction.credit"><small> Cash </small>
+          <input type="radio" value="credit" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Credit Card </small>
+          <input type="radio" value="check" ng-disabled="amount.$invalid" ng-model="transaction.credit"> <small> Check </small>
+        </label> 
+        </div>
+
+
+
+      </div>
+      <br>
+
+    </div>
+
+      <!--
+      <div>
+        <button ng-disabled="newtransaction.$invalid" type="button" class="btn btn-large btn-primary">
+          <i class='icon-ok icon-large' id="plus"></i> Submit Transaction
+        </button>
+      </div>
+      -->
+
+  </form>
+
+
